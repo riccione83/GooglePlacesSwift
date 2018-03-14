@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<VariablesViewState
+   version = "1.0">
+   <ContextStates>
+      <ContextState
+         contextName = "closure #1 in PlacesController.loadData(searchFor:):PlacesController.swift">
+      </ContextState>
+      <ContextState
+         contextName = "closure #1 in PlacesController.init():PlacesController.swift">
+      </ContextState>
+      <ContextState
+         contextName = "MainViewController.mapView(_:viewFor:):MainViewMapDelegate.swift">
+         <PersistentStrings>
+            <PersistentString
+               value = "customPointAnnotation.imageName">
+            </PersistentString>
+         </PersistentStrings>
+      </ContextState>
+      <ContextState
+         contextName = "DataTests.setUp():DataTests.swift">
+         <PersistentStrings>
+            <PersistentString
+               value = "places">
+            </PersistentString>
+         </PersistentStrings>
+      </ContextState>
+      <ContextState
+         contextName = "DataTests.testData():DataTests.swift">
+         <PersistentStrings>
+            <PersistentString
+               value = "self.places">
+            </PersistentString>
+         </PersistentStrings>
+      </ContextState>
+   </ContextStates>
+</VariablesViewState>
