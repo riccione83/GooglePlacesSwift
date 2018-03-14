@@ -12,14 +12,22 @@ import UIKit
 extension MainViewController:UISearchBarDelegate {
     
     func searchBarSearchButtonClicked(_ searchBar: UISearchBar) {
+        searchBar.resignFirstResponder()
+        searchBar.endEditing(true)
+        
         if searchBar.text!.count > 0 {
-            searchBar.resignFirstResponder()
-            searchBar.endEditing(true)
-            
             if let textToSearch = searchBar.text?.lowercased() {
                 PersistentDataManager.sharedInstance.saveSearchString(theString: textToSearch)
+                self.setMessageOnTableView("Wait...", toTableView: self.placeTableView)
                 try! placeController.loadData(searchFor: textToSearch)
             }
+        }
+        else {
+            self.places = [Place]()
+            PersistentDataManager.sharedInstance.savePlaces(with: self.places)
+            self.searchBarEndOfSearch(self.searchComponent)
+            self.placeTableView.reloadData()
+            self.clearAnnotations()
         }
     }
     

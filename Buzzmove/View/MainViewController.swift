@@ -14,20 +14,29 @@ class MainViewController: UIViewController, PlaceProtocolDelegate, LocationManag
     @IBOutlet var searchComponent: UISearchBar!
     @IBOutlet var placeTableView: UITableView!
     @IBOutlet var mapView: MKMapView!
-    
+
     var places = [Place]()
     let placeController = PlacesController()
     let locationServices = LocationService()
     
     func dataUpdated(withData places: [Place], networkError: NetworkError) {
         DispatchQueue.main.async {
+
             switch networkError {
             case .None:
                 self.places = places
                 PersistentDataManager.sharedInstance.savePlaces(with: self.places)
-                self.searchBarEndOfSearch(self.searchComponent)
                 self.placeTableView.reloadData()
-                self.setPlacesOnMap(places)
+                if self.places.count > 0 {
+                    self.searchBarEndOfSearch(self.searchComponent)
+                    self.setPlacesOnMap(places)
+                }
+                else {
+                    self.clearAnnotations()
+                    self.setMessageOnTableView("There is nothing to show here.", toTableView: self.placeTableView)
+                    self.zoomOnCoordinate(withCoordinate: self.mapView.userLocation.coordinate)
+                }
+                
             case .Error(let errorString):
                 self.loadSavedPlaces(orPrintError: errorString)
             }
@@ -35,7 +44,7 @@ class MainViewController: UIViewController, PlaceProtocolDelegate, LocationManag
     }
     
     func loadSavedPlaces(orPrintError errorString:String) {
-        if let _places = PersistentDataManager.sharedInstance.loadPlaces(), self.places.count == 0{
+        if let _places = PersistentDataManager.sharedInstance.loadPlaces(), self.places.count == 0 {
             self.places = _places
             self.searchBarEndOfSearch(self.searchComponent)
             self.placeTableView.reloadData()
@@ -71,11 +80,12 @@ class MainViewController: UIViewController, PlaceProtocolDelegate, LocationManag
     
         setMessageOnTableView("Plase wait...", toTableView: self.placeTableView)
     }
-
+    
     func tracingLocation(_ currentLocation: CLLocation) {
         LocationService.sharedInstance.delegate = nil
         if let searchTerm = PersistentDataManager.sharedInstance.loadSearchString() {
             self.searchComponent.text = searchTerm
+            self.setMessageOnTableView("Wait...", toTableView: self.placeTableView)
             try! placeController.loadData(searchFor: searchTerm)
         }
     }

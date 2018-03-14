@@ -69,6 +69,7 @@ extension MainViewController:UITableViewDelegate, UITableViewDataSource {
             
             tableview.backgroundView = messageLabel
             tableview.separatorStyle = UITableViewCellSeparatorStyle.none
+            
         }
     }
 }
