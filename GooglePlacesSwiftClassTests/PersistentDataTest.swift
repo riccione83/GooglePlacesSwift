@@ -1,6 +1,6 @@
 //
 //  PersistentDataTest.swift
-//  BuzzmoveTests
+//  GooglePlacesSwiftTests
 //
 //  Created by Riccardo Rizzo on 14/03/18.
 //  Copyright © 2018 Riccardo Rizzo. All rights reserved.

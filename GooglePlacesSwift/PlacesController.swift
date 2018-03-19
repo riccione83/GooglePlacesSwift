@@ -1,6 +1,6 @@
 //
 //  PlacesController.swift
-//  Buzzmove
+//  GooglePlacesSwift
 //
 //  Created by Riccardo Rizzo on 13/03/18.
 //  Copyright © 2018 Riccardo Rizzo. All rights reserved.
