@@ -28,7 +28,7 @@ There are some Class Test inclued with this repository
 
 ## Contributing
 
-Please read [CONTRIBUTING.md](https://gist.github.com/PurpleBooth/b24679402957c63ec426) for details on our code of conduct, and the process for submitting pull requests to us.
+Please feel free to contributing at this project.
 
 
 ## Authors
